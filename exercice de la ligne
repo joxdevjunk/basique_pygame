@@ -1,0 +1,37 @@
+import pygame
+
+
+screen = pygame.display.set_mode((800,600)) # initialisation de l'ecran
+run = True  # variable pour le while 
+
+Ax,Ay= 0,240
+Bx,By= 640,240
+pygame.draw.line(screen,(255,255,255),(Ax,Ay),(Bx,By),2)
+
+#trace un cercle bleu dessus , rouge dessous
+rouge=(255,0,00)
+bleu=(0,215,215)
+rayon=25
+
+
+def waitclic():
+    return pygame.mouse.get_pos()
+
+while run : # Boucle 
+    P = waitclic() #
+    for evenement in pygame.event.get(): #
+        
+        if evenement.type == pygame.MOUSEBUTTONDOWN:
+            print("evenement",pygame.event.get()) 
+            if P[0] >(Ax+Ay) :
+                # les print pour debug
+                print(P, '<',(Ax+Ay,Bx+By),'? :)')
+                pygame.draw.circle(screen,bleu,(P),rayon,4)
+                
+            elif P[1] <(Bx+By):
+                pygame.draw.circle(screen,rouge,(P),rayon,2)
+             
+        pygame.display.flip()
+        
+    print("MOUSE_x:",P[0],"MOUSE_y:",P[1])
+
